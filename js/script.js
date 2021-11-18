@@ -44,32 +44,82 @@ function Minesweeper(){
     }
 
 
-    // Questo ciclo inserisce i box all'interno del container a seconda la seleziona che abbiamo fatto in precedenza
-    const containerBox = document.querySelector('.outerSquare');
-
-
-    for(let i = 1; i <= boxNumb; i++){
-        box = boxCreator(i);
-        containerBox.append(box);
-        
-        box.addEventListener('click', function() {
-            this.classList.add('selected');
-        });
-    }
-
+    
+    
     //Questa mi restituisce un numero casuale secondo il range di livello
-    const RandomBomb = () =>{Math.floor(Math.random() * (boxNumb - 2) + 1);}
+    const RandomBomb = () =>Math.floor(Math.random() * (boxNumb - 2) + 1);
     
     // Dichiaro il numero di bombe che voglio
     const bombs = 16;
-
+    
     // Dichiaro una array vuoto che conterra le mie bombe
     const arrayBombs = [];
-
+    
     // Ciclo per non creare duplicati di bombe
     for(let i = 0; i < bombs; i++){
-        console.log(RandomBomb());
+        let bomb = RandomBomb();
+        if(!arrayBombs.includes(bomb)){
+            arrayBombs.push(bomb);
+        }
     }
+    
+
+    console.log(arrayBombs);
+    // Questo ciclo inserisce i box all'interno del container a seconda la seleziona che abbiamo fatto in precedenza
+    const containerBox = document.querySelector('.outerSquare');
+    
+
+
+    // Questa funzione termina il gioco colorando tutti i box
+    function gameOver(){
+        document.querySelector('.outerSquare').innerHTML = '';
+        
+        for(let i = 1; i <= boxNumb; i++)
+        {
+            box = boxCreator(i);
+
+            if (arrayBombs.includes(i)){
+                box.classList.add("gameover");
+            } 
+            else{
+                box.classList.add("selected");
+            }
+            containerBox.append(box);
+        }
+    }
+
+    for(let i = 1; i <= boxNumb; i++){
+        box = boxCreator(i);
+
+        if (arrayBombs.includes(i)){
+            box.classList.add("bomb")
+        }
+
+       box.addEventListener('click', function(){
+            
+            if(this.classList.contains('bomb')){
+                gameOver();
+            } else {
+                this.classList.add("selected");
+            }
+        });
+
+        containerBox.append(box);
+    }
+
+
+
+    
+
+
+
+
+
+
+
+
+
+    // Ciclo che mi colora tutti i box con le bombe rossi e i quadrati azzurri
 
 
    
