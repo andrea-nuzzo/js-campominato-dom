@@ -57,6 +57,21 @@ function Minesweeper(){
         });
     }
 
+    //Questa mi restituisce un numero casuale secondo il range di livello
+    const RandomBomb = () =>{Math.floor(Math.random() * (boxNumb - 2) + 1);}
+    
+    // Dichiaro il numero di bombe che voglio
+    const bombs = 16;
+
+    // Dichiaro una array vuoto che conterra le mie bombe
+    const arrayBombs = [];
+
+    // Ciclo per non creare duplicati di bombe
+    for(let i = 0; i < bombs; i++){
+        console.log(RandomBomb());
+    }
+
+
    
 
 }
