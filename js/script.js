@@ -31,7 +31,7 @@ function Minesweeper(){
     }
     // boxRow rappresenta il numero di box per riga
     boxRow = Math.sqrt(boxNumb);
-    
+    console.log(boxRow);
 
 
     // Questa funzione crea i vari box
@@ -48,7 +48,7 @@ function Minesweeper(){
     // Questo ciclo inserisce i box all'interno del container a seconda la seleziona che abbiamo fatto in precedenza
     const containerBox = document.querySelector('.outerSquare');
 
-    for(let i = 0; i <= boxNumb; i++){
+    for(let i = 0; i < boxNumb; i++){
         const box = boxCreator(boxRow);
         containerBox.append(box);
     }
