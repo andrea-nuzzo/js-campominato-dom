@@ -32,6 +32,17 @@ function Minesweeper(){
     console.log(boxNumb);
     console.log(boxRow);
 
+    // Questa funzione crea i vari box
+    function boxCreator(numbInsideBox) {
+        const box = document.createElement("div");
+        box.classList.add("square");
+        const width =  `calc(100% / ${boxRow})`;
+        box.style.width = width;
+        box.innerHTML = numbInsideBox;
+        return box;
+    }
+
+    console.log(boxCreator(1));
 
 
 }
