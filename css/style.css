@@ -36,3 +36,10 @@
 .gameover{
     background-color: red;
  }
+
+ #conta{
+    font-size: 30px;
+    font-weight: bold;
+    margin: 50px;
+    text-align: center;
+ }

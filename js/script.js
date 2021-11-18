@@ -5,9 +5,12 @@ document.getElementById("play").addEventListener("click", function(){
 
 // La funzione crea la grglia con il gioco
 function Minesweeper(){
-    
+    // Contatore che viene svuotato ad ogni partita
+    localStorage.clickcount = 0;
+
     //Svuoto il container ad ogni inizio altrimenti i box si sommeranno sotto
     document.querySelector('.outerSquare').innerHTML = '';
+    document.getElementById('conta').innerHTML = '';
     
     // Seleziona la toolbar e faccio scegliere il livello
     const selectLevel = parseInt(document.getElementById("level").value);
@@ -88,41 +91,32 @@ function Minesweeper(){
         }
     }
 
+    // Faccip aèrtire un ciclo per popolare  il quadrato
     for(let i = 1; i <= boxNumb; i++){
         box = boxCreator(i);
 
+        // Inserisco la classe bomb come alert per finire il gioco
         if (arrayBombs.includes(i)){
             box.classList.add("bomb")
         }
 
-       box.addEventListener('click', function(){
-            
+        // Al click dei box ...
+        box.addEventListener('click', function(){
+            //... aumento il contatore click
+            if (localStorage.clickcount) {localStorage.clickcount = Number(localStorage.clickcount) + 1;
+            } else {localStorage.clickcount = 1;}
+
+            // Se clicco su un box che contiene la classe bomb termino il gioco con la funzione gameover
             if(this.classList.contains('bomb')){
                 gameOver();
-            } else {
+                document.getElementById('conta').innerHTML = `Hai selezionato ${localStorage.clickcount} caselle prima di perdere`
+            } 
+            //Altrimenti coloro il box di blu con l'aggiunta della classe selected
+            else {
                 this.classList.add("selected");
             }
         });
-
         containerBox.append(box);
     }
-
-
-
-    
-
-
-
-
-
-
-
-
-
-    // Ciclo che mi colora tutti i box con le bombe rossi e i quadrati azzurri
-
-
-   
-
 }
 
