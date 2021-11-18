@@ -3,12 +3,16 @@
     padding: 0;
     box-sizing: border-box;
 }
+body{
+   
+    background-color: #eeeeee;
+}
 .container{
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 10px;
-    background-color: coral;
+    background-color:#ff5964;
 }
 
 .outerSquare{
@@ -30,11 +34,11 @@
 }
 
 .selected{
-    background-color: lightskyblue;
+    background-color: #38618c;
 }
 
 .gameover{
-    background-color: red;
+    background-color: #ff5964;
  }
 
  #conta{

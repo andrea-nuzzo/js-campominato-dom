@@ -46,8 +46,26 @@ function Minesweeper(){
         return box;
     }
 
+    // Funzione per ordinare un array in maniera crescente
+    function sortArray(array){
+       
+        for(let j = 0; j < array.length; j++){
+            
+            for(let i =  array.length - 1; i >= j; i--){
+                if ( array[i] > array[i+1]){
+                    let temp = array[i];
+                    array[i] = array[i+1];
+                    array[i+1] = temp;
+                }
+            }
+        }
+        return array;
+    }
 
+    // console.log(arrayBombs);
+   
     
+
     
     //Questa mi restituisce un numero casuale secondo il range di livello
     const RandomBomb = () =>Math.floor(Math.random() * (boxNumb - 2) + 1);
@@ -57,8 +75,7 @@ function Minesweeper(){
     
     // Dichiaro una array vuoto che conterra le mie bombe
     const arrayBombs = [];
-    
-    // Ciclo per non creare duplicati di bombe
+        // Ciclo per non creare duplicati di bombe
     for(let i = 0; i < bombs; i++){
         let bomb = RandomBomb();
         if(!arrayBombs.includes(bomb)){
@@ -66,8 +83,10 @@ function Minesweeper(){
         }
     }
     
-
-    console.log(arrayBombs);
+    
+    
+    console.log(sortArray(arrayBombs));
+    
     // Questo ciclo inserisce i box all'interno del container a seconda la seleziona che abbiamo fatto in precedenza
     const containerBox = document.querySelector('.outerSquare');
     
@@ -109,14 +128,23 @@ function Minesweeper(){
             // Se clicco su un box che contiene la classe bomb termino il gioco con la funzione gameover
             if(this.classList.contains('bomb')){
                 gameOver();
-                document.getElementById('conta').innerHTML = `Hai selezionato ${localStorage.clickcount} caselle prima di perdere`
+                return document.getElementById('conta').innerHTML = `Hai selezionato ${localStorage.clickcount} caselle prima di perdere`
             } 
             //Altrimenti coloro il box di blu con l'aggiunta della classe selected
             else {
                 this.classList.add("selected");
+                
             }
+
+            if (localStorage.clickcount == boxNumb-arrayBombs.length){
+                return document.getElementById('conta').innerHTML = `Complimenti hai vinto`
+            }
+
+
         });
         containerBox.append(box);
     }
 }
+
+
 
