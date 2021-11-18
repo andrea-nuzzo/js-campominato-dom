@@ -6,6 +6,9 @@ document.getElementById("play").addEventListener("click", function(){
 // La funzione crea la grglia con il gioco
 function Minesweeper(){
     
+    //Svuoto il container ad ogni inizio altrimenti i box si sommeranno sotto
+    document.querySelector('.outerSquare').innerHTML = '';
+    
     // Seleziona la toolbar e faccio scegliere il livello
     const selectLevel = parseInt(document.getElementById("level").value);
 
@@ -28,9 +31,8 @@ function Minesweeper(){
     }
     // boxRow rappresenta il numero di box per riga
     boxRow = Math.sqrt(boxNumb);
+    
 
-    console.log(boxNumb);
-    console.log(boxRow);
 
     // Questa funzione crea i vari box
     function boxCreator(numbInsideBox) {
@@ -42,8 +44,14 @@ function Minesweeper(){
         return box;
     }
 
-    console.log(boxCreator(1));
 
+    // Questo ciclo inserisce i box all'interno del container a seconda la seleziona che abbiamo fatto in precedenza
+    const containerBox = document.querySelector('.outerSquare');
+
+    for(let i = 0; i <= boxNumb; i++){
+        const box = boxCreator(boxRow);
+        containerBox.append(box);
+    }
 
 }
 
